@@ -1,0 +1,7 @@
+Django
+Psycopg2-binary
+Pillow
+requests
+beautifulsoup4
+django-cleanup
+django_rest_framework
