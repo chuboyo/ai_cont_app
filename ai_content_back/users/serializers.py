@@ -1,5 +1,6 @@
 # from rest_framework import serializers
 # from django.contrib.auth import get_user_model, authenticate
+# from rest_framework.authtoken.views import Token
 
 # UserModel = get_user_model()
 
@@ -7,14 +8,22 @@
 # 	class Meta:
 # 		model = UserModel
 # 		fields = '__all__'
+# 		extra_kwargs = {'password': {
+#             'write_only': True,
+#             'required': True,
+#         }}
+		
+
 # 	def create(self, clean_data):
 # 		user_obj = UserModel.objects.create_user(username=clean_data['username'], email=clean_data['email'], password=clean_data['password'])
 # 		user_obj.save()
+# 		Token.objects.create(user=user_obj)
 # 		return user_obj
 
 # class UserLoginSerializer(serializers.Serializer):
 # 	email = serializers.EmailField()
 # 	password = serializers.CharField()
+	
 # 	##
 # 	def check_user(self, clean_data):
 # 		user = authenticate(username=clean_data['email'], password=clean_data['password'])
@@ -26,3 +35,10 @@
 # 	class Meta:
 # 		model = UserModel
 # 		fields = ('email', 'username')
+		
+# class ChangePasswordSerializer(serializers.Serializer):
+#     old_password = serializers.CharField(required=True)
+#     new_password = serializers.CharField(required=True)
+
+# class ResetPasswordEmailSerializer(serializers.Serializer):
+#     email = serializers.EmailField(required=True)

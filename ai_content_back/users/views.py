@@ -1,8 +1,8 @@
-# from django.contrib.auth import get_user_model, login, logout
-# from rest_framework.authentication import SessionAuthentication
+# from django.contrib.auth import get_user_model, login, logout, update_session_auth_hash
+# from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
-# from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
+# from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer, ChangePasswordSerializer
 # from rest_framework import permissions, status
 # from .validations import custom_validation, validate_email, validate_password
 
@@ -21,7 +21,7 @@
 
 # class UserLogin(APIView):
 # 	permission_classes = (permissions.AllowAny,)
-# 	authentication_classes = (SessionAuthentication,)
+# 	authentication_classes = (TokenAuthentication,)
 # 	##
 # 	def post(self, request):
 # 		data = request.data
@@ -44,8 +44,25 @@
 
 # class UserView(APIView):
 # 	permission_classes = (permissions.IsAuthenticated,)
-# 	authentication_classes = (SessionAuthentication,)
+# 	authentication_classes = (TokenAuthentication,)
 # 	##
 # 	def get(self, request):
 # 		serializer = UserSerializer(request.user)
 # 		return Response({'user': serializer.data}, status=status.HTTP_200_OK)
+	
+# class ChangePasswordView(APIView):
+# 	permission_classes = (permissions.IsAuthenticated,)
+# 	authentication_classes = (TokenAuthentication,)
+	
+# 	def post(self, request):
+# 		serializer = ChangePasswordSerializer(data=request.data)
+# 		if serializer.is_valid():
+# 			user = request.user
+# 			if user.check_password(serializer.data.get('old_password')):
+# 				user.set_password(serializer.data.get('new_password'))
+# 				user.save()
+# 				update_session_auth_hash(request, user)
+# 				return Response({'message': 'Password changed successfully.'}, status=status.HTTP_200_OK)
+# 			return Response({'error': 'Incorrect old password.'}, status=status.HTTP_400_BAD_REQUEST)
+# 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	

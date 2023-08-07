@@ -1,7 +1,8 @@
-Django
+Django==4.1.1
 Psycopg2-binary
 Pillow
 requests
 beautifulsoup4
 django-cleanup
 django_rest_framework
+django-rest-passwordreset

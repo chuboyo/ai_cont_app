@@ -50,10 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local apps
-    'users',
+    'users.apps.UsersConfig',
 
     # third party apps
     'rest_framework',
+     'rest_framework.authtoken',
+     'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,7 @@ ROOT_URLCONF = 'ai_content.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates/',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,6 +158,12 @@ MEDIA_ROOT = '/vol/web/media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Auth user model and auth backend
 AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Replace with your preferred backend
+
+
