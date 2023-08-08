@@ -20,28 +20,28 @@
 #     :return:
 #     """
 #     # send an e-mail to the user
-#     context = {
-#         'current_user': reset_password_token.user,
-#         'username': reset_password_token.user.username,
-#         'email': reset_password_token.user.email,
-#         'reset_password_url': "{}?token={}".format(
-#             instance.request.build_absolute_uri(reverse('password_reset:reset-password-confirm')),
-#             reset_password_token.key)
-#     }
+#     # context = {
+#     #     'current_user': reset_password_token.user,
+#     #     'username': reset_password_token.user.username,
+#     #     'email': reset_password_token.user.email,
+#     #     'reset_password_url': "{}?token={}".format(
+#     #         instance.request.build_absolute_uri(reverse('password_reset:reset-password-confirm')),
+#     #         reset_password_token.key)
+#     # }
 
 #     # render email text
-#     email_html_message = render_to_string('email/password_reset_email.html', context)
-#     email_plaintext_message = render_to_string('email/password_reset_email.txt', context)
+#     # email_html_message = render_to_string('email/password_reset_email.html', context)
+#     # email_plaintext_message = render_to_string('email/password_reset_email.txt', context)
 
 #     msg = EmailMultiAlternatives(
 #         # title:
 #         "Password Reset for {title}".format(title="Your Website Title"),
 #         # message:
-#         email_plaintext_message,
+#         f'FOLLOW THE LINK BELOW \n http://127.0.0.1:8000/api/password_reset/confirm/ \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
 #         # from:
-#         "domain@noreply.com",
+#         settings.EMAIL_HOST_USER,
 #         # to:
 #         [reset_password_token.user.email]
 #     )
-#     msg.attach_alternative(email_html_message, "text/html")
+#     # msg.attach_alternative(email_html_message, "text/html")
 #     msg.send()

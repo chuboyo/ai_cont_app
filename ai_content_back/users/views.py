@@ -1,10 +1,14 @@
 # from django.contrib.auth import get_user_model, login, logout, update_session_auth_hash
+# from django.core.mail import EmailMultiAlternatives, send_mail
 # from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
+# from rest_framework.decorators import api_view
 # from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer, ChangePasswordSerializer
 # from rest_framework import permissions, status
 # from .validations import custom_validation, validate_email, validate_password
+# from rest_framework.authtoken.views import Token
+# from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 
 # class UserRegister(APIView):
@@ -30,8 +34,9 @@
 # 		serializer = UserLoginSerializer(data=data)
 # 		if serializer.is_valid(raise_exception=True):
 # 			user = serializer.check_user(data)
+# 			token = Token.objects.get(user = user)
 # 			login(request, user)
-# 			return Response(serializer.data, status=status.HTTP_200_OK)
+# 			return Response({'token':token.key}, status=status.HTTP_200_OK)
 
 
 # class UserLogout(APIView):
@@ -65,4 +70,7 @@
 # 				return Response({'message': 'Password changed successfully.'}, status=status.HTTP_200_OK)
 # 			return Response({'error': 'Incorrect old password.'}, status=status.HTTP_400_BAD_REQUEST)
 # 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+		
 	
