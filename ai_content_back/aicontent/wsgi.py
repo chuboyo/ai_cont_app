@@ -1,5 +1,5 @@
 """
-WSGI config for ai_content project.
+WSGI config for aicontent project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

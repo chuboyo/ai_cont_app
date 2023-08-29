@@ -44,7 +44,7 @@ services:
   
   celery:
     build: .
-    command: celery -A ai_content worker -l info
+    command: celery -A aicontent worker -l info
     volumes:
       - .:/app
     environment:
@@ -57,7 +57,7 @@ services:
       - redis
   celery-beat:
     build: .
-    command: celery -A ai_content beat -l info
+    command: celery -A aicontent beat -l info
     volumes:
       - .:/app
     environment:

@@ -14,4 +14,4 @@ fi
 $@
 
 
-gunicorn ai_content.wsgi -w 4 -b 0.0.0.0:8000
+gunicorn aicontent.wsgi -w 4 -b 0.0.0.0:8000

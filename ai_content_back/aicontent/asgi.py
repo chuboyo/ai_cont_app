@@ -1,5 +1,5 @@
 """
-ASGI config for ai_content project.
+ASGI config for aicontent project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

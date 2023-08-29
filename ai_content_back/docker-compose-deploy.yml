@@ -55,7 +55,7 @@ services:
   
   celery:
     build: .
-    command: celery -A ai_content worker -l info
+    command: celery -A aicontent worker -l info
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -67,7 +67,7 @@ services:
   celery-beat:
     build: .
     user: root
-    command: celery -A ai_content beat -l info
+    command: celery -A aicontent beat -l info
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
