@@ -8,6 +8,6 @@ urlpatterns = [
     path('toparticles/', TopArticle.as_view(), name='toparticles'),
     path('articles/<int:id>/', ArticleDetail.as_view(), name='articles-detail'),
     # path('sciencedaily_scrape/', sciencedaily_scrapper),
-    path('venturebeat_scrape/', venturebeat_scrapper),
-    path('uniteai_scrape/', uniteai_scrapper),
+    # path('venturebeat_scrape/', venturebeat_scrapper),
+    # path('uniteai_scrape/', uniteai_scrapper),
 ]
