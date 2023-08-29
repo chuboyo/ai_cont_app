@@ -2,7 +2,7 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ai_content.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aicontent.settings')
 
 app = Celery('ai_content')
 app.config_from_object('django.conf:settings', namespace='CELERY')
