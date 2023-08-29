@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from celery.schedules import crontab
+# import articles.tasks
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,16 +53,22 @@ INSTALLED_APPS = [
 
     #local apps
     'users.apps.UsersConfig',
+    'articles.apps.ArticlesConfig',
 
     # third party apps
     'rest_framework',
      'rest_framework.authtoken',
      'django_rest_passwordreset',
+     "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    # third party middleware
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,7 +148,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # Static files configuration
-# STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
 STATIC_URL = '/static/static/'
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -152,6 +160,7 @@ MEDIA_URL = '/static/media/'
 if DEBUG:
     MEDIA_URL = 'media/'
 
+STATIC_ROOT = '/vol/web/static'
 MEDIA_ROOT = '/vol/web/media'
 
 # Default primary key field type
@@ -180,3 +189,37 @@ REST_FRAMEWORK = {
     ]
 }
 
+# CORS allowed origins
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    
+]
+
+
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    'hello': {
+        'task': 'articles.tasks.hello',
+        'schedule': crontab()  # execute every minute
+    },
+
+    'sciencedaily_scrapper': {
+        'task': 'articles.tasks.sciencedaily_scrapper',
+        'schedule': crontab(hour="*/23")  # execute every minute
+    },
+
+    'venturebeat_scrapper': {
+        'task': 'articles.tasks.venturebeat_scrapper',
+        'schedule': crontab(hour="*/23")  # execute every minute
+    },
+
+    'uniteai_scrapper': {
+        'task': 'articles.tasks.uniteai_scrapper',
+        'schedule': crontab(hour="*/23")  # execute every minute
+    },
+}

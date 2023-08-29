@@ -6,3 +6,9 @@ beautifulsoup4
 django-cleanup
 django_rest_framework
 django-rest-passwordreset
+openai
+python-dateutil
+django-cors-headers
+celery==5.1.2
+redis==3.5.3
+gunicorn==20.0.4

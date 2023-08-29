@@ -1,28 +1,27 @@
-version: '3.9'
+version: "3.9"
 
 services:
   app:
     build:
       context: .
-    command: >
-      sh -c "python manage.py wait_for_db &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
     ports:
-      - 8000:8000
+      - "8000:8000"
+    restart: always
     volumes:
-      - .:/app
-      - ./data/web:/vol/web
+      - static-data:/vol/web
     env_file:
       - .env
     environment:
-      - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG}
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
-      - ALLOWED_HOST=*
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+      - DJANGO_SUPERUSER_EMAIL=akojichubiyojo1997@gmail.com
+      - DJANGO_SUPERUSER_USERNAME=chuboyo
       - EMAIL_PASS=${EMAIL_PASS}
       - EMAIL_HOST_USER=${EMAIL_HOST_USER}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -32,21 +31,31 @@ services:
 
   db:
     image: postgres:13-alpine
-    ports:
-            - 5432:5432
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-  
+
+  nginx:
+    build:
+      context: ./nginx
+    restart: always
+    volumes:
+      - static-data:/vol/web
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+
   redis:
     image: redis:alpine
   
   celery:
     build: .
     command: celery -A ai_content worker -l info
-    volumes:
-      - .:/app
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -57,9 +66,8 @@ services:
       - redis
   celery-beat:
     build: .
+    user: root
     command: celery -A ai_content beat -l info
-    volumes:
-      - .:/app
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -68,3 +76,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - redis
+
+
+volumes:
+  postgres-data:
+  static-data:

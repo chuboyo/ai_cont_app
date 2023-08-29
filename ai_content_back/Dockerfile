@@ -7,6 +7,7 @@ ENV PYTHONUNBUFFERED 1
 # Copy project
 COPY . /app
 COPY ./requirements.txt /requirements.txt
+COPY ./entrypoint.sh /
 
 
 
@@ -17,6 +18,12 @@ EXPOSE 8000
 
 # Create new user
 RUN adduser --disabled-password --no-create-home app
+
+# RUN apk update \
+#     && apk add postgresql-dev gcc python3-dev musl-dev \
+    # && apk add libffi-dev libressl-dev \
+    # && apk add --no-cache jpeg-dev zlib-dev libjpeg \
+    # && apk add rust cargo 
 
 # Make directories to map static and media root and modify directory ownership
 RUN mkdir -p /vol/web/static && \
@@ -34,3 +41,5 @@ USER app
 
 #set path
 ENV PATH="/py/bin:$PATH"
+
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
