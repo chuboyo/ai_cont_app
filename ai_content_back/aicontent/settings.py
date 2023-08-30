@@ -206,10 +206,10 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 CELERY_BEAT_SCHEDULE = {
-    'hello': {
-        'task': 'articles.tasks.hello',
-        'schedule': crontab()  # execute every minute
-    },
+    # 'hello': {
+    #     'task': 'articles.tasks.hello',
+    #     'schedule': crontab()  # execute every minute
+    # },
 
     'sciencedaily_scrapper': {
         'task': 'articles.tasks.sciencedaily_scrapper',
