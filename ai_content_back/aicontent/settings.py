@@ -227,4 +227,4 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com','https://summare.ai','https://www.summare.ai']
+CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com','https://summarebackend.com','https://www.summarebackend.com']
