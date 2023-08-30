@@ -192,6 +192,9 @@ REST_FRAMEWORK = {
 # CORS allowed origins
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://main.d68h1hrn74slm.amplifyapp.com/",
+    "https://summare.ai",
+    "https://www.summare.ai"
     
 ]
 
@@ -210,17 +213,17 @@ CELERY_BEAT_SCHEDULE = {
 
     'sciencedaily_scrapper': {
         'task': 'articles.tasks.sciencedaily_scrapper',
-        'schedule': crontab(hour="*/23")  # execute every minute
+        'schedule': crontab(hour=6)  # execute every minute
     },
 
     'venturebeat_scrapper': {
         'task': 'articles.tasks.venturebeat_scrapper',
-        'schedule': crontab(hour="*/23")  # execute every minute
+        'schedule': crontab(hour=6)  # execute every minute
     },
 
     'uniteai_scrapper': {
         'task': 'articles.tasks.uniteai_scrapper',
-        'schedule': crontab(hour="*/23")  # execute every minute
+        'schedule': crontab(hour=6)  # execute every minute
     },
 }
 
