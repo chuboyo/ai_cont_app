@@ -63,11 +63,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     # third party middleware
-    "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -227,4 +227,4 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com']
+CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com', "https://summare.ai", "https://www.summare.ai"]
