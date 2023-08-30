@@ -192,7 +192,7 @@ REST_FRAMEWORK = {
 # CORS allowed origins
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://main.d68h1hrn74slm.amplifyapp.com/",
+    "https://main.d68h1hrn74slm.amplifyapp.com",
     "https://summare.ai",
     "https://www.summare.ai"
     
