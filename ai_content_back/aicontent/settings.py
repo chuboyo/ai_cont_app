@@ -223,3 +223,5 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour="*/23")  # execute every minute
     },
 }
+
+CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com']
