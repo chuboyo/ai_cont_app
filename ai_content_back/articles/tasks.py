@@ -5,7 +5,7 @@ import dateutil.parser as parser
 from bs4 import BeautifulSoup
 from .models import Article
 from django.http import HttpResponse
-from datetime import datetime
+from datetime import datetime, timedelta
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
@@ -35,10 +35,18 @@ def store_article_in_model(article_list):
     # print(len(article_list))
     for article in article_list:
         current_date = datetime.now()
+        yesterday = current_date - timedelta(days=1)
         current_date = str(current_date)
         current_date = current_date[0:10]
-
-        if current_date == article['Date']:
+        yesterday = str(yesterday)
+        yesterday = yesterday[0:10]
+        
+        
+        try:
+            model_article = Article.objects.get(title=article['Title'])
+        except:
+            model_article = None
+        if (current_date == article['Date'] or yesterday == article['Date']) and not model_article:
             try:
                 Article.objects.create(
                     title = article['Title'],
@@ -60,10 +68,13 @@ def summarize_and_store(article_list):
     
     for article in article_list:
         current_date = datetime.now()
+        yesterday = current_date - timedelta(days=1)
         current_date = str(current_date)
         current_date = current_date[0:10]
+        yesterday = str(yesterday)
+        yesterday = yesterday[0:10]
 
-        if current_date == article["Date"]:
+        if current_date == article["Date"] or yesterday == article['Date']:
             text = article['Body']
 
 

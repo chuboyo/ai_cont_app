@@ -213,17 +213,17 @@ CELERY_BEAT_SCHEDULE = {
 
     'sciencedaily_scrapper': {
         'task': 'articles.tasks.sciencedaily_scrapper',
-        'schedule': crontab(hour=6)  # execute every minute
+        'schedule': crontab(minute="*/5")  # execute every minute
     },
 
     'venturebeat_scrapper': {
         'task': 'articles.tasks.venturebeat_scrapper',
-        'schedule': crontab(hour=6)  # execute every minute
+        'schedule': crontab(minute="*/5")  # execute every minute
     },
 
     'uniteai_scrapper': {
         'task': 'articles.tasks.uniteai_scrapper',
-        'schedule': crontab(hour=6)  # execute every minute
+        'schedule': crontab(minute="*/5")  # execute every minute
     },
 }
 
