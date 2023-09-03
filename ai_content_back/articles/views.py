@@ -5,6 +5,7 @@ from rest_framework import status
 from .serializers import ArticleSerializer
 from .models import Article
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
+from django.db.models import Q
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ class ArticleList(APIView):
         # print(query)
         if query == None:
             query = ''
-        articles = Article.objects.filter(title__icontains=query)
+        articles = Article.objects.filter(Q(title__icontains=query) | Q(source__icontains=query) | Q(paragraph_one__icontains=query) | Q(paragraph_two__icontains=query))
 
         page = self.request.query_params.get('page')
         paginator = Paginator(articles, 12)
