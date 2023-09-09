@@ -11,6 +11,7 @@ class Article(models.Model):
     paragraph_two = models.TextField(blank=True)
     read_count = models.IntegerField(blank=True, null=True, default=0)
     image_url = models.CharField(max_length=200, blank=True)
+    category = models.CharField(max_length=200, blank=True)
 
     class Meta:
         ordering = ['-date']

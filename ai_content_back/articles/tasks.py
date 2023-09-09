@@ -53,7 +53,8 @@ def store_article_in_model(article_list):
                     date = article['Date'],
                     paragraph_one = article['Paragraph_one'],
                     paragraph_two = article['Paragraph_two'],
-                    source = article['Source']
+                    source = article['Source'],
+                    category = article['Category']
                     )
                 print('execution')
             except Exception as e:
@@ -80,15 +81,29 @@ def summarize_and_store(article_list):
 
             prompt = f"""
                 Summarize the text delimited by triple backticks \
-                into 200 words or less.
                 The summary should be in two paragraphs.
                 ```{text}```
                 """
             response = get_completion(prompt)
             response_list = response.split('\n')
+
+            prompt2 = f"""
+                Given the text delimited by triple backticks, \
+                categorize the text into one of the following topics,
+                1. LLMs
+                2. Electronics
+                3. Climate
+                4. Computervision
+                5. Bigdata
+                your output should only be a word representing the topic.
+                ```{text}```
+                """
+            
+            response2 = get_completion(prompt2)
             # print(response_list)
             article['Paragraph_one'] = response_list[0]
             article['Paragraph_two'] = response_list[2]
+            article['Category'] = response2
     store_article_in_model(article_list=article_list)
 
 

@@ -19,7 +19,7 @@ class ArticleList(APIView):
         # print(query)
         if query == None:
             query = ''
-        articles = Article.objects.filter(Q(title__icontains=query) | Q(source__icontains=query) | Q(paragraph_one__icontains=query) | Q(paragraph_two__icontains=query))
+        articles = Article.objects.filter(Q(title__icontains=query) | Q(source__icontains=query) | Q(paragraph_one__icontains=query) | Q(paragraph_two__icontains=query) | Q(category__icontains=query))
 
         page = self.request.query_params.get('page')
         paginator = Paginator(articles, 12)
