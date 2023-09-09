@@ -90,12 +90,13 @@ def summarize_and_store(article_list):
             prompt2 = f"""
                 Given the text delimited by triple backticks, \
                 categorize the text into one of the following topics,
-                1. LLMs
-                2. Electronics
-                3. Climate
-                4. Computervision
-                5. Bigdata
-                your output should only be a word representing the topic.
+                LLMs
+                Electronics
+                Climate
+                Computervision
+                Bigdata
+                Artificialintelligence
+                Your output should only be a word representing the topic.
                 ```{text}```
                 """
             
