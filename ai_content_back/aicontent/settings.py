@@ -194,7 +194,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://main.d68h1hrn74slm.amplifyapp.com",
     "https://summare.ai",
-    "https://www.summare.ai"
+    "https://www.summare.ai",
+    "https://feat-next.d41ocowfx1zg.amplifyapp.com"
     
 ]
 
