@@ -195,8 +195,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://main.d68h1hrn74slm.amplifyapp.com",
     "https://summare.ai",
     "https://www.summare.ai",
-    "https://feat-next.d41ocowfx1zg.amplifyapp.com"
-    
+    "https://feat-next.d41ocowfx1zg.amplifyapp.com"    
 ]
 
 
