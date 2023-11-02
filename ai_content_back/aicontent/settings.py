@@ -228,6 +228,7 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 CSRF_TRUSTED_ORIGINS = ['http://ec2-54-161-115-14.compute-1.amazonaws.com',
+                        'http://ec2-3-94-190-40.compute-1.amazonaws.com',
                         'https://summarebackend.com',
                         'https://www.summarebackend.com',
                         'https://feat-next.d41ocowfx1zg.amplifyapp.com']
