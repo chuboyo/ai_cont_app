@@ -177,9 +177,9 @@ def venturebeat_scrapper():
     for tags in a_tags[62:]:
         releases_list.append(tags['href'])
 
-
+    # print(releases_list[0:4])
     article_list=[]
-    for articles_link in releases_list[0:5]:
+    for articles_link in releases_list[0:4]:
         # content_url = base_url + articles_link
         requests_article_obj = requests.get(articles_link, headers=headers)
         soup_article_obj = BeautifulSoup(requests_article_obj.content, 'html.parser')
@@ -187,6 +187,7 @@ def venturebeat_scrapper():
 
 
         # introduction = soup_article_obj.find("p", id = "first").text
+        # print(soup_article_obj.find("h1", {'class': 'article-title'}).text)
 
         title = soup_article_obj.find("h1", {'class': 'article-title'}).text.strip()
 
@@ -226,10 +227,10 @@ def uniteai_scrapper():
 
 
     releases_list = []
-    for tags in a_tags[123:]:
+    for tags in a_tags[128:]:
         releases_list.append(tags['href'])
 
-
+    # print(releases_list[0:5])
     article_list=[]
     for articles_link in releases_list[0:5]:
         # content_url = base_url + articles_link
