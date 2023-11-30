@@ -1,5 +1,4 @@
-# smart-emr-project 🥼🚑
-#AI CONTENT APP 📖 🤖
+# AI content aggregator 📖🤖
 
 This application is version 1.0 of the backend of AI content 
 aggregrator. We implement scrapers within this backend to scrape popular AI
