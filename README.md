@@ -1,3 +1,4 @@
+# smart-emr-project 🥼🚑
 #AI CONTENT APP 📖 🤖
 
 This application is version 1.0 of the backend of AI content 
