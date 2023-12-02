@@ -37,7 +37,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # title:
         "Password Reset for {title}".format(title="summare.ai"),
         # message:
-        f'FOLLOW THE LINK BELOW \n https://summare.ai/password_reset/confirm/ \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
+        f'FOLLOW THE LINK BELOW \n https://summare.ai/forgot-password-confirm \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
         # from:
         'summare@admin.com',
         # to:
