@@ -43,6 +43,7 @@ class UserLogin(APIView):
 		if serializer.is_valid(raise_exception=True):
 			user = serializer.check_user(data)
 			token = Token.objects.get(user = user)
+			print(token)
 			login(request, user)
 			return Response({'user':user.get_username(),'email':user.email,'token':token.key}, status=status.HTTP_200_OK)
 

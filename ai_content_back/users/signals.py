@@ -37,7 +37,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # title:
         "Password Reset for {title}".format(title="Your Website Title"),
         # message:
-        f'FOLLOW THE LINK BELOW \n http://127.0.0.1:8000/api/password_reset/confirm/ \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
+        f'FOLLOW THE LINK BELOW \n https://summare.ai/password_reset/confirm/ \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
         # from:
         settings.EMAIL_HOST_USER,
         # to:
