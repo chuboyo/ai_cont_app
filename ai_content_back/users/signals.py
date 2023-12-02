@@ -35,11 +35,11 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
 
     msg = EmailMultiAlternatives(
         # title:
-        "Password Reset for {title}".format(title="Your Website Title"),
+        "Password Reset for {title}".format(title="summare.ai"),
         # message:
         f'FOLLOW THE LINK BELOW \n https://summare.ai/password_reset/confirm/ \nUSE THIS TOKEN IN THE TOKEN FIELD TO RESET PASSWORD: \n{reset_password_token.key} \nCHEERS!!!',
         # from:
-        settings.EMAIL_HOST_USER,
+        'summare@admin.com',
         # to:
         [reset_password_token.user.email]
     )
